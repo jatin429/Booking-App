@@ -11,9 +11,10 @@ import {
   faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { SearchContext } from "../../context/SearchContext";
+import { AuthContext } from "../../context/AuthContext";
 
 const Hotel = () => {
   const location=useLocation();
@@ -23,8 +24,21 @@ const Hotel = () => {
   // console.log(id);
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
+  const [openModel, setOpenModel] = useState(false);
   const {data,loading,error,reFetch}=useFetch(`/hotels/either/${id}`)
   const {dates,options} = useContext(SearchContext)
+
+  const {user} =useContext(AuthContext);
+  const navigate=useNavigate();
+
+  const handleClick=()=>{
+         if(!user){
+          navigate("/login")
+         }
+         else{
+           setOpenModel(true);
+         }
+  }
 
 const MILLISECONDS_PER_DAY=1000*60*60*24;
 function dayDifference(date1,date2){
@@ -102,7 +116,7 @@ const days=dayDifference(dates[0].endDate,dates[0].startDate)
           </div>
         )}
         <div className="hotelWrapper">
-          <button className="bookNow">Reserve or Book Now!</button>
+          <button onClick={handleClick} className="bookNow">Reserve or Book Now!</button>
           <h1 className="hotelTitle">{data.name}</h1>
           <div className="hotelAddress">
             <FontAwesomeIcon icon={faLocationDot} />
