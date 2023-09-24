@@ -39,6 +39,27 @@ exports.updateRoom=async(req,res)=>{
       })
     }
 }
+// UPDATE Avalibility
+exports.updateRoomAvalibility=async(req,res)=>{
+    try{
+      const updateRoomAvalibility=await Room.updateOne(
+          {"roomNumber._id":req.params.id},
+          {
+            $push:{
+              "roomNumber.$.unavailableDates": req.body.dates
+            },
+          }
+          )
+          res.status(200).json(updateRoomAvalibility);
+    }
+    catch(err){
+      res.status(500).json({
+       success:false,
+       message:"Problem occured while updation unavaliable dates"  
+      })
+    }
+}
+
 
 // DELETE 
 exports.deleteRoom=async(req,res)=>{

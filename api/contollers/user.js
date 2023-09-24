@@ -46,7 +46,7 @@ exports.getUser=async(req,res)=>{
 // GET ALL User
 exports.getAllUser=async(req,res)=>{
     try{
-        const users=await Users.find()
+        const users=await User.find()
         res.status(200).json(users);
     }
     catch(err){

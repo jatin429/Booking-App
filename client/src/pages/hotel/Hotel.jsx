@@ -15,6 +15,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { SearchContext } from "../../context/SearchContext";
 import { AuthContext } from "../../context/AuthContext";
+import {Reserve} from "../../components/reserve/Reserve";
 
 const Hotel = () => {
   const location=useLocation();
@@ -33,7 +34,7 @@ const Hotel = () => {
 
   const handleClick=()=>{
          if(!user){
-          navigate("/login")
+          navigate("/login");
          }
          else{
            setOpenModel(true);
@@ -156,13 +157,14 @@ const days=dayDifference(dates[0].endDate,dates[0].startDate)
               <h2>
                 <b>${days*data.cheapestPrice}</b> ({dayDifference(dates[0].endDate,dates[0].startDate)} nights)
               </h2>
-              <button>Reserve or Book Now!</button>
+              <button onClick={handleClick}>Reserve or Book Now!</button>
             </div>
           </div>
         </div>
         <MailList />
         <Footer />
       </div>)}
+      {openModel && <Reserve setOpen={setOpenModel} hotelid={id}/>}
     </div>
   );
 };

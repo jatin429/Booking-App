@@ -1,5 +1,5 @@
 const express=require("express");
-const { createHotel, updateHotel, deleteHotel, getHotel, getAllHotels, countByCity, countByType} = require("../contollers/hotel");
+const { createHotel, updateHotel, deleteHotel, getHotel, getAllHotels, countByCity, countByType,getHotelRooms} = require("../contollers/hotel");
 const { verifyAdmin } = require("../utils/verifyAdmin");
 
 const router=express.Router();
@@ -17,5 +17,5 @@ router.get("/",getAllHotels);
 //  count by city and count by type->whether hotel,apartment...
 router.get("/countByCity",countByCity);
 router.get("/countByType",countByType);
-
+router.get("/room/:id",getHotelRooms);
 module.exports = router;
