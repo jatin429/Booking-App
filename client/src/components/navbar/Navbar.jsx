@@ -19,11 +19,14 @@ const Navbar = () => {
       {user ? (<div className="navItems">
         <span className="usename">{user.username}</span>
         <button onClick={handleLogout} className="navButton">Logout</button>
+        <Link to="http://localhost:3001"><button className="navButton">To Admin</button> </Link>
       </div>) :(
         <div className="navItems">
           <Link to="/register"><button className="navButton">Register</button></Link>
           <Link to="/login"><button className="navButton">Login</button></Link>
+          <Link to="http://localhost:3001"><button className="navButton">To Admin</button> </Link>
         </div>)}
+        
       </div>
     </div>
   )

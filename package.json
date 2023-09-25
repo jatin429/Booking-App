@@ -1,0 +1,24 @@
+{
+  "name": "booking-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"cd client && npm start\" \"cd admin && npm start\" \"cd api && npm start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jatin429/Booking-App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jatin429/Booking-App/issues"
+  },
+  "homepage": "https://github.com/jatin429/Booking-App#readme",
+  "dependencies": {
+    "concurrently": "^8.2.1"
+  }
+}
